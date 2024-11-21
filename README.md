@@ -27,6 +27,7 @@ Abaixo, estão descritos os principais endpoints disponíveis.
 ### Livros
 
 - **GET `/livros/`**: Retorna uma lista de todos os livros cadastrados.
+- - **GET `/livros/id`**: Retorna o livro correspondente ao id informado.
 - **POST `/livros/`**: Cria um novo livro com os dados fornecidos no corpo da requisição.
   - Campos obrigatórios: `nome`, `streaming`, `categorias`
   - Streaming deve ser `"F"` (Físico) ou `"AK"` (Amazon Kindle).
