@@ -6,6 +6,11 @@ class LivrosSchema(ModelSchema):
         model = Livros
         fields = ['nome', 'streaming','categorias']
 
+class LivrosIdSchema(ModelSchema):
+    class Meta:
+        model = Livros
+        fields = ['nome','nota','comentarios']
+
 class LivrosViewSchema(ModelSchema):
     class Meta:
         model = Livros

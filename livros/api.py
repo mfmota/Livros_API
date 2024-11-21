@@ -1,5 +1,5 @@
 from ninja import Router,Query 
-from .schemas import LivrosSchema,AvaliacaoSchema,FiltrosSortearSchema,LivrosViewSchema
+from .schemas import LivrosSchema,AvaliacaoSchema,FiltrosSortearSchema,LivrosViewSchema,LivrosIdSchema
 from .models import Livros,Categorias
 from typing import List
 
@@ -52,6 +52,14 @@ def deletar_livro(request,livro_id:int):
     livro.delete()
 
     return livro_id
+
+@livros_router.get('/id/{livro_id}', response={200: LivrosIdSchema, 404: dict})
+def get_livro(request, livro_id: int):
+    try:
+        livro = Livros.objects.get(id=livro_id)
+        return livro
+    except Livros.DoesNotExist:
+        return 404, {"error": "Livro não encontrado"}
 
 @livros_router.get('/sortear/', response={200: LivrosSchema, 404:dict})
 def sortear_livro(request,filtros: Query[FiltrosSortearSchema]):
